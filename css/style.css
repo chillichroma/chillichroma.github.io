@@ -73,9 +73,8 @@ body {
 
 .brand-logo {
   display: block;
-
   width: auto;
-  height: 14px;
+  height: clamp(14px, 1.05vw, 20px);
 }
 
 
