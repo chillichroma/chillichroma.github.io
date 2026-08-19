@@ -1,3 +1,7 @@
+/* =========================
+   BASIC
+========================= */
+
 * {
   box-sizing: border-box;
 }
@@ -13,7 +17,10 @@ body {
   background: #fff;
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 .site-header {
   width: 100%;
@@ -24,42 +31,73 @@ body {
   align-items: center;
   justify-content: space-between;
 
-  background: #fff;
+  background: #f8bf18;
 }
 
-.logo {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
+
+/* LOGO */
+
+.brand-home {
+  display: inline-flex;
+  align-items: center;
 }
 
-.desktop-nav {
+.brand-logo {
+  display: block;
+
+  width: auto;
+  height: 34px;
+}
+
+
+/* MENU */
+
+.main-nav {
   display: flex;
+  align-items: center;
+
   gap: 32px;
 }
 
-.desktop-nav a {
+.main-nav a {
   color: #111;
   text-decoration: none;
+
   font-size: 14px;
+  font-weight: 700;
+
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: #e60012;
 }
 
 
-/* MAIN SLIDER */
+/* =========================
+   HERO SLIDER
+========================= */
 
 .hero-slider {
   position: relative;
+
   width: 100%;
   aspect-ratio: 1920 / 900;
+
   overflow: hidden;
+
   background: #eee;
 }
+
+
+/* SLIDES */
 
 .slide {
   position: absolute;
   inset: 0;
 
   opacity: 0;
+
   transition: opacity 1.2s ease;
 }
 
@@ -70,34 +108,84 @@ body {
 .slide img {
   width: 100%;
   height: 100%;
+
   display: block;
+
   object-fit: cover;
 }
 
 
-/* SLIDER DOTS */
+/* =========================
+   SLIDE CAPTION
+========================= */
+
+.slide-caption {
+  position: absolute;
+
+  left: 40px;
+  bottom: 38px;
+
+  z-index: 5;
+
+  color: #fff;
+
+  text-shadow:
+    0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+.slide-caption strong {
+  display: block;
+
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 700;
+
+  letter-spacing: -0.4px;
+}
+
+.slide-caption span {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 400;
+
+  letter-spacing: -0.2px;
+}
+
+
+/* =========================
+   SLIDER DOTS
+========================= */
 
 .slider-dots {
   position: absolute;
+
   z-index: 10;
 
   bottom: 22px;
   left: 50%;
+
   transform: translateX(-50%);
 
   display: flex;
+
   gap: 8px;
 }
 
 .dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
+
   padding: 0;
 
   border: 0;
   border-radius: 50%;
 
   background: rgba(255, 255, 255, 0.45);
+
   cursor: pointer;
 }
 
@@ -106,10 +194,13 @@ body {
 }
 
 
-/* INTRO */
+/* =========================
+   WHAT WE DO
+========================= */
 
 .intro {
   padding: 120px 40px 140px;
+
   text-align: center;
 }
 
@@ -118,6 +209,7 @@ body {
 
   font-size: 32px;
   font-weight: 600;
+
   letter-spacing: -1px;
 }
 
@@ -126,31 +218,41 @@ body {
 
   font-size: 17px;
   line-height: 1.9;
+
   font-weight: 400;
+
   color: #555;
 }
 
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 768px) {
 
+  /* HEADER */
+
   .site-header {
     height: 64px;
+
     padding: 0 20px;
   }
 
-  .logo {
-    font-size: 15px;
+  .brand-logo {
+    height: 26px;
   }
 
-  .desktop-nav {
-    gap: 18px;
+  .main-nav {
+    gap: 17px;
   }
 
-  .desktop-nav a {
-    font-size: 12px;
+  .main-nav a {
+    font-size: 11px;
   }
+
+
+  /* SLIDER */
 
   .hero-slider {
     aspect-ratio: 4 / 3;
@@ -160,9 +262,38 @@ body {
     object-fit: cover;
   }
 
+
+  /* CAPTION */
+
+  .slide-caption {
+    left: 20px;
+    bottom: 32px;
+  }
+
+  .slide-caption strong {
+    font-size: 16px;
+  }
+
+  .slide-caption span {
+    margin-top: 3px;
+
+    font-size: 11px;
+  }
+
+
+  /* DOTS */
+
   .slider-dots {
     bottom: 15px;
   }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+  }
+
+
+  /* INTRO */
 
   .intro {
     padding: 80px 24px 100px;
@@ -176,4 +307,5 @@ body {
     font-size: 15px;
     line-height: 1.8;
   }
+
 }
