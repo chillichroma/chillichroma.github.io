@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>칠리크로마 | Chilli Chroma</title>
 
   <link rel="stylesheet" href="css/style.css">
@@ -10,59 +11,140 @@
 
 <body>
 
+  <!-- HEADER -->
   <header class="site-header">
-    <div class="logo">CHILLI CHROMA</div>
 
-    <nav class="desktop-nav">
-      <a href="#works">Works</a>
+    <!-- 로고 클릭 시 홈페이지 맨 위로 -->
+    <a href="#" class="brand-home">
+      <img
+        src="images/header-logo.png"
+        alt="Chilli Chroma"
+        class="brand-logo"
+      >
+    </a>
+
+    <nav class="main-nav">
+      <a href="#what-we-do">What we do</a>
+      <a href="works.html">Works</a>
       <a href="#contact">Contact</a>
     </nav>
+
   </header>
+
 
   <main>
 
+    <!-- MAIN SLIDER -->
     <section class="hero-slider">
+
       <div class="slide active">
-        <img src="images/main1.jpg" alt="칠리크로마 공간 디자인 프로젝트">
+        <img
+          src="images/main1.jpg"
+          alt="2025 JIMIN IS BACK 포토존"
+        >
+
+        <div class="slide-caption">
+          <strong>2025 JIMIN IS BACK 포토존</strong>
+          <span>하이브 사옥 앞</span>
+        </div>
       </div>
+
 
       <div class="slide">
-        <img src="images/main2.jpg" alt="칠리크로마 공간 디자인 프로젝트">
+        <img
+          src="images/main2.jpg"
+          alt="2026 블랙핑크 X 다마고치 팝업"
+        >
+
+        <div class="slide-caption">
+          <strong>2026 블랙핑크 × 다마고치 팝업</strong>
+          <span>잠실 월드몰</span>
+        </div>
       </div>
+
 
       <div class="slide">
-        <img src="images/main3.jpg" alt="칠리크로마 공간 디자인 프로젝트">
+        <img
+          src="images/main3.jpg"
+          alt="2025 크록스 케이스 팝업"
+        >
+
+        <div class="slide-caption">
+          <strong>2025 크록스 케이스 팝업</strong>
+          <span>더현대서울</span>
+        </div>
       </div>
+
 
       <div class="slide">
-        <img src="images/main4.jpg" alt="칠리크로마 공간 디자인 프로젝트">
+        <img
+          src="images/main4.jpg"
+          alt="2026 TESER 팝업"
+        >
+
+        <div class="slide-caption">
+          <strong>2026 TESER 팝업</strong>
+          <span>더현대서울</span>
+        </div>
       </div>
+
 
       <div class="slide">
-        <img src="images/main5.jpg" alt="칠리크로마 공간 디자인 프로젝트">
+        <img
+          src="images/main5.jpg"
+          alt="2024 디어지민 팝업"
+        >
+
+        <div class="slide-caption">
+          <strong>2024 디어지민 팝업</strong>
+          <span>누디트 익선</span>
+        </div>
       </div>
+
 
       <div class="slide">
-        <img src="images/main6.jpg" alt="칠리크로마 공간 디자인 프로젝트">
+        <img
+          src="images/main6.jpg"
+          alt="2026 어푸밍 팝업"
+        >
+
+        <div class="slide-caption">
+          <strong>2026 어푸밍 팝업</strong>
+          <span>성수동 스토리칸</span>
+        </div>
       </div>
+
 
       <div class="slide">
-        <img src="images/main7.jpg" alt="칠리크로마 공간 디자인 프로젝트">
+        <img
+          src="images/main7.jpg"
+          alt="2025 프레리탁 사무실"
+        >
+
+        <div class="slide-caption">
+          <strong>2025 프레리탁 사무실</strong>
+          <span>한국예탁결제원 서울사옥</span>
+        </div>
       </div>
 
+
+      <!-- 슬라이드 점 -->
       <div class="slider-dots">
-        <button class="dot active"></button>
-        <button class="dot"></button>
-        <button class="dot"></button>
-        <button class="dot"></button>
-        <button class="dot"></button>
-        <button class="dot"></button>
-        <button class="dot"></button>
+        <button class="dot active" aria-label="1번 슬라이드"></button>
+        <button class="dot" aria-label="2번 슬라이드"></button>
+        <button class="dot" aria-label="3번 슬라이드"></button>
+        <button class="dot" aria-label="4번 슬라이드"></button>
+        <button class="dot" aria-label="5번 슬라이드"></button>
+        <button class="dot" aria-label="6번 슬라이드"></button>
+        <button class="dot" aria-label="7번 슬라이드"></button>
       </div>
+
     </section>
 
 
-    <section class="intro" id="works">
+    <!-- WHAT WE DO -->
+    <section class="intro" id="what-we-do">
+
       <h1>모든 분야의 공간 디자인</h1>
 
       <p>
@@ -70,9 +152,16 @@
         클라이언트의 고유한 브랜드 가치를 반영하여<br>
         독창적인 공간을 만듭니다.
       </p>
+
+    </section>
+
+
+    <!-- 나중에 Contact 영역 만들 위치 -->
+    <section id="contact">
     </section>
 
   </main>
+
 
   <script src="js/main.js"></script>
 
