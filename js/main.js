@@ -2,8 +2,12 @@
    MAIN SLIDER
 ========================= */
 
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
+const slides =
+  document.querySelectorAll('.slide');
+
+const dots =
+  document.querySelectorAll('.dot');
+
 
 let currentSlide = 0;
 
@@ -12,7 +16,6 @@ const slideInterval = 3500;
 let slideTimer;
 
 
-/* 슬라이드 표시 */
 
 function showSlide(index) {
 
@@ -41,19 +44,18 @@ function showSlide(index) {
 }
 
 
-/* 다음 슬라이드 */
 
 function nextSlide() {
 
   const next =
-    (currentSlide + 1) % slides.length;
+    (currentSlide + 1)
+    % slides.length;
 
   showSlide(next);
 
 }
 
 
-/* 자동 슬라이드 시작 */
 
 function startSlider() {
 
@@ -66,7 +68,6 @@ function startSlider() {
 }
 
 
-/* 자동 슬라이드 다시 시작 */
 
 function restartSlider() {
 
@@ -77,7 +78,6 @@ function restartSlider() {
 }
 
 
-/* 점 클릭 */
 
 dots.forEach((dot, index) => {
 
@@ -104,18 +104,24 @@ startSlider();
 ========================= */
 
 const header =
-  document.querySelector('.site-header');
+  document.querySelector(
+    '.site-header'
+  );
 
 
 function updateHeader() {
 
   if (window.scrollY > 20) {
 
-    header.classList.add('scrolled');
+    header.classList.add(
+      'scrolled'
+    );
 
   } else {
 
-    header.classList.remove('scrolled');
+    header.classList.remove(
+      'scrolled'
+    );
 
   }
 
