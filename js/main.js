@@ -184,7 +184,7 @@ updateHeader();
 
 /* =========================
    PREWORK
-   BEFORE ↔ AFTER
+   BEFORE / AFTER
 ========================= */
 
 const preworkCards =
@@ -193,8 +193,7 @@ const preworkCards =
   );
 
 
-let preworkIndex =
-  0;
+let preworkIndex = 0;
 
 
 
@@ -278,9 +277,7 @@ const revealObserver =
     },
 
     {
-
       threshold: 0.18
-
     }
 
   );
@@ -289,11 +286,6 @@ const revealObserver =
 
 reveals.forEach(
   (element, index) => {
-
-    /*
-    사진/텍스트가 완전히 동시에 나오지 않고
-    약간씩 순차적으로 등장
-    */
 
     element.style
       .transitionDelay =
