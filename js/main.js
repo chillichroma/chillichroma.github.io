@@ -3,10 +3,15 @@
 ========================= */
 
 const slides =
-  document.querySelectorAll('.slide');
+  document.querySelectorAll(
+    '.slide'
+  );
+
 
 const dotsWrap =
-  document.querySelector('.slider-dots');
+  document.querySelector(
+    '.slider-dots'
+  );
 
 
 let currentSlide = 0;
@@ -17,86 +22,101 @@ let slideTimer = null;
 
 /* DOT 자동 생성 */
 
-slides.forEach((slide, index) => {
+slides.forEach(
+  (slide, index) => {
 
-  const button =
-    document.createElement('button');
-
-
-  button.type =
-    'button';
-
-
-  button.className =
-    'dot' +
-    (index === 0 ? ' active' : '');
+    const button =
+      document.createElement(
+        'button'
+      );
 
 
-  button.setAttribute(
-    'aria-label',
-    `${index + 1}번 슬라이드`
+    button.type =
+      'button';
+
+
+    button.className =
+      'dot' +
+      (
+        index === 0
+          ? ' active'
+          : ''
+      );
+
+
+    button.setAttribute(
+      'aria-label',
+      `${index + 1}번 슬라이드`
+    );
+
+
+    button.addEventListener(
+      'click',
+      () => {
+
+        showSlide(index);
+
+        restartSlider();
+
+      }
+    );
+
+
+    dotsWrap.appendChild(
+      button
+    );
+
+  }
+);
+
+
+
+const dots =
+  document.querySelectorAll(
+    '.dot'
   );
 
 
-  button.addEventListener(
-    'click',
-    () => {
 
-      showSlide(index);
+function showSlide(index) {
 
-      restartSlider();
+  slides.forEach(
+    (slide, i) => {
+
+      slide.classList.toggle(
+        'active',
+        i === index
+      );
 
     }
   );
 
 
-  dotsWrap.appendChild(button);
+  dots.forEach(
+    (dot, i) => {
 
-});
+      dot.classList.toggle(
+        'active',
+        i === index
+      );
 
-
-const dots =
-  document.querySelectorAll('.dot');
-
-
-
-/* 슬라이드 표시 */
-
-function showSlide(index) {
-
-  slides.forEach((slide, i) => {
-
-    slide.classList.toggle(
-      'active',
-      i === index
-    );
-
-  });
+    }
+  );
 
 
-  dots.forEach((dot, i) => {
-
-    dot.classList.toggle(
-      'active',
-      i === index
-    );
-
-  });
-
-
-  currentSlide = index;
+  currentSlide =
+    index;
 
 }
 
 
 
-/* 다음 슬라이드 */
-
 function nextSlide() {
 
   const next =
-    (currentSlide + 1)
-    % slides.length;
+    (
+      currentSlide + 1
+    ) % slides.length;
 
 
   showSlide(next);
@@ -104,8 +124,6 @@ function nextSlide() {
 }
 
 
-
-/* 자동 슬라이드 */
 
 function restartSlider() {
 
@@ -175,7 +193,8 @@ const preworkCards =
   );
 
 
-let preworkIndex = 0;
+let preworkIndex =
+  0;
 
 
 
@@ -213,4 +232,82 @@ setInterval(
 
   },
   2800
+);
+
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const reveals =
+  document.querySelectorAll(
+    '.reveal, .section-reveal'
+  );
+
+
+const revealObserver =
+  new IntersectionObserver(
+
+    entries => {
+
+      entries.forEach(
+        entry => {
+
+          if (
+            entry.isIntersecting
+          ) {
+
+            entry.target
+              .classList
+              .add(
+                'in-view'
+              );
+
+
+            revealObserver
+              .unobserve(
+                entry.target
+              );
+
+          }
+
+        }
+      );
+
+    },
+
+    {
+
+      threshold: 0.18
+
+    }
+
+  );
+
+
+
+reveals.forEach(
+  (element, index) => {
+
+    /*
+    사진/텍스트가 완전히 동시에 나오지 않고
+    약간씩 순차적으로 등장
+    */
+
+    element.style
+      .transitionDelay =
+      `${
+        Math.min(
+          index * 70,
+          280
+        )
+      }ms`;
+
+
+    revealObserver.observe(
+      element
+    );
+
+  }
 );
