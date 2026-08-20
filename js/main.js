@@ -5,17 +5,62 @@
 const slides =
   document.querySelectorAll('.slide');
 
-const dots =
-  document.querySelectorAll('.dot');
+const dotsWrap =
+  document.querySelector('.slider-dots');
 
 
 let currentSlide = 0;
 
-const slideInterval = 3500;
-
-let slideTimer;
+let slideTimer = null;
 
 
+
+/* DOT 자동 생성 */
+
+slides.forEach((slide, index) => {
+
+  const button =
+    document.createElement('button');
+
+
+  button.type =
+    'button';
+
+
+  button.className =
+    'dot' +
+    (index === 0 ? ' active' : '');
+
+
+  button.setAttribute(
+    'aria-label',
+    `${index + 1}번 슬라이드`
+  );
+
+
+  button.addEventListener(
+    'click',
+    () => {
+
+      showSlide(index);
+
+      restartSlider();
+
+    }
+  );
+
+
+  dotsWrap.appendChild(button);
+
+});
+
+
+const dots =
+  document.querySelectorAll('.dot');
+
+
+
+/* 슬라이드 표시 */
 
 function showSlide(index) {
 
@@ -45,11 +90,14 @@ function showSlide(index) {
 
 
 
+/* 다음 슬라이드 */
+
 function nextSlide() {
 
   const next =
     (currentSlide + 1)
     % slides.length;
+
 
   showSlide(next);
 
@@ -57,50 +105,34 @@ function nextSlide() {
 
 
 
-function startSlider() {
+/* 자동 슬라이드 */
+
+function restartSlider() {
+
+  if (slideTimer) {
+
+    clearInterval(
+      slideTimer
+    );
+
+  }
+
 
   slideTimer =
     setInterval(
       nextSlide,
-      slideInterval
+      3500
     );
 
 }
 
 
-
-function restartSlider() {
-
-  clearInterval(slideTimer);
-
-  startSlider();
-
-}
-
-
-
-dots.forEach((dot, index) => {
-
-  dot.addEventListener(
-    'click',
-    () => {
-
-      showSlide(index);
-
-      restartSlider();
-
-    }
-  );
-
-});
-
-
-startSlider();
+restartSlider();
 
 
 
 /* =========================
-   HEADER SCROLL
+   HEADER
 ========================= */
 
 const header =
@@ -111,19 +143,10 @@ const header =
 
 function updateHeader() {
 
-  if (window.scrollY > 20) {
-
-    header.classList.add(
-      'scrolled'
-    );
-
-  } else {
-
-    header.classList.remove(
-      'scrolled'
-    );
-
-  }
+  header.classList.toggle(
+    'scrolled',
+    window.scrollY > 20
+  );
 
 }
 
@@ -131,8 +154,63 @@ function updateHeader() {
 window.addEventListener(
   'scroll',
   updateHeader,
-  { passive: true }
+  {
+    passive: true
+  }
 );
 
 
 updateHeader();
+
+
+
+/* =========================
+   PREWORK
+   BEFORE ↔ AFTER
+========================= */
+
+const preworkCards =
+  document.querySelectorAll(
+    '.prework-card'
+  );
+
+
+let preworkIndex = 0;
+
+
+
+setInterval(
+  () => {
+
+    preworkIndex =
+      preworkIndex === 0
+        ? 1
+        : 0;
+
+
+    preworkCards.forEach(
+      card => {
+
+        const images =
+          card.querySelectorAll(
+            'img'
+          );
+
+
+        images.forEach(
+          (image, index) => {
+
+            image.classList.toggle(
+              'active',
+              index === preworkIndex
+            );
+
+          }
+        );
+
+      }
+    );
+
+  },
+  2800
+);
