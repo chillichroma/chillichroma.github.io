@@ -67,7 +67,7 @@ img {
 .brand-logo {
   display: block;
   width: auto;
-  height: clamp(28px,2.1vw,40px);
+  height: clamp(20px, 1.55vw, 30px);
 }
 
 .logo-black {
@@ -793,7 +793,7 @@ img {
   }
 
   .brand-logo {
-    height: 20px;
+    height: 14px;
   }
 
   .main-nav {
