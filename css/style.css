@@ -67,7 +67,7 @@ img {
 .brand-logo {
   display: block;
   width: auto;
-  height: clamp(14px,1.05vw,20px);
+  height: clamp(28px,2.1vw,40px);
 }
 
 .logo-black {
@@ -113,7 +113,7 @@ img {
 .hero-slider {
   position: relative;
   width: 100%;
-  aspect-ratio: 1920 / 900;
+  aspect-ratio:16/9;
   overflow: hidden;
   background: #ddd;
 }
@@ -703,7 +703,7 @@ img {
   margin-bottom: 10px;
 }
 
-/* 占쎈챸苑� 占쎄낮�� 占싼덈┛ 占쎈베占� */
+/* 푸터 상단 크기 확대 */
 .footer-contact h3 {
   margin: 0;
   font-size: 26px;
@@ -740,7 +740,7 @@ img {
   font-weight: 500;
 }
 
-/* SNS 占쎈똾釉� 占싼덈┛ 占쎌쥙占� */
+/* SNS 아래 텍스트 */
 .footer-bottom {
   width: min(100%,930px);
   margin: 56px auto 0;
@@ -793,7 +793,7 @@ img {
   }
 
   .brand-logo {
-    height: 12px;
+    height: 20px;
   }
 
   .main-nav {
