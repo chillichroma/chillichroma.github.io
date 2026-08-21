@@ -647,7 +647,7 @@ img {
 }
 
 .about-links a::after {
-  content: "��";
+  content: "\2192";
   font-size: 34px;
   line-height: 1;
   font-weight: 300;
@@ -703,7 +703,7 @@ img {
   margin-bottom: 10px;
 }
 
-/* �명꽣 �곷떒 �ш린 �뺣� */
+/* 占쎈챸苑� 占쎄낮�� 占싼덈┛ 占쎈베占� */
 .footer-contact h3 {
   margin: 0;
   font-size: 26px;
@@ -734,13 +734,13 @@ img {
 }
 
 .footer-download-link::after {
-  content: "��";
+  content: "\2193";
   font-size: 13px;
   line-height: 1;
   font-weight: 500;
 }
 
-/* SNS �댄븯 �ш린 �좎� */
+/* SNS 占쎈똾釉� 占싼덈┛ 占쎌쥙占� */
 .footer-bottom {
   width: min(100%,930px);
   margin: 56px auto 0;
