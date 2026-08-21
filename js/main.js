@@ -184,7 +184,7 @@ updateHeader();
 
 /* =========================
    PREWORK
-   BEFORE / AFTER
+   BEFORE ↔ AFTER
 ========================= */
 
 const preworkCards =
