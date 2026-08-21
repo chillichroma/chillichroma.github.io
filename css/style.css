@@ -883,14 +883,14 @@ img {
 
   .service h2 {
     margin-bottom: 1px;
-    font-size: 10.4px;
-    line-height: 1.05;
-    letter-spacing: -.5px;
+    font-size: 13px;
+    line-height: 1.1;
+    letter-spacing: -.4px;
   }
 
   .service p {
-    font-size: 10px;
-    line-height: 1.08;
+     font-size: 12px;
+     line-height: 1.2;
   }
 
   .more {
