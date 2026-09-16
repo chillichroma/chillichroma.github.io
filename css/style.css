@@ -113,8 +113,8 @@ img {
 .hero-slider {
   position: relative;
   width: 100%;
-  height: 70vh;
-  min-height: 500px;
+  height: 100vh;
+  min-height: 700px;
   overflow: hidden;
   background: #ddd;
 }
@@ -454,11 +454,6 @@ img {
   margin: 0 auto;
 }
 
-.prework-item {
-  min-width: 0;
-  text-align: center;
-}
-
 .prework-card {
   position: relative;
   aspect-ratio: 1 / 1;
@@ -467,25 +462,17 @@ img {
 }
 
 .prework-card img {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity .8s ease;
+  transition: opacity 1s ease;
 }
 
 .prework-card img.active {
   opacity: 1;
-}
-
-.prework-label {
-  margin: 10px 0 0;
-  color: #777;
-  font-size: 12px;
-  line-height: 1.4;
-  font-weight: 400;
-  letter-spacing: -.2px;
 }
 
 
@@ -945,11 +932,6 @@ img {
 
   .prework-grid {
     gap: 12px;
-  }
-
-  .prework-label {
-    margin-top: 8px;
-    font-size: 11px;
   }
 
   .concept-stage {
