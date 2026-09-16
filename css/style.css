@@ -113,7 +113,8 @@ img {
 .hero-slider {
   position: relative;
   width: 100%;
-  aspect-ratio:16/9;
+  height: 100vh;
+  min-height: 700px;
   overflow: hidden;
   background: #ddd;
 }
@@ -703,7 +704,7 @@ img {
   margin-bottom: 10px;
 }
 
-/* 푸터 상단 크기 확대 */
+/* �명꽣 �곷떒 �ш린 �뺣� */
 .footer-contact h3 {
   margin: 0;
   font-size: 26px;
@@ -740,7 +741,7 @@ img {
   font-weight: 500;
 }
 
-/* SNS 아래 텍스트 */
+/* SNS �꾨옒 �띿뒪�� */
 .footer-bottom {
   width: min(100%,930px);
   margin: 56px auto 0;
