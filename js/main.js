@@ -7,17 +7,13 @@ const slides =
     '.slide'
   );
 
-
 const dotsWrap =
   document.querySelector(
     '.slider-dots'
   );
 
-
 let currentSlide = 0;
-
 let slideTimer = null;
-
 
 
 /* DOT 자동 생성 */
@@ -30,10 +26,8 @@ slides.forEach(
         'button'
       );
 
-
     button.type =
       'button';
-
 
     button.className =
       'dot' +
@@ -43,24 +37,20 @@ slides.forEach(
           : ''
       );
 
-
     button.setAttribute(
       'aria-label',
       `${index + 1}번 슬라이드`
     );
-
 
     button.addEventListener(
       'click',
       () => {
 
         showSlide(index);
-
         restartSlider();
 
       }
     );
-
 
     dotsWrap.appendChild(
       button
@@ -70,12 +60,10 @@ slides.forEach(
 );
 
 
-
 const dots =
   document.querySelectorAll(
     '.dot'
   );
-
 
 
 function showSlide(index) {
@@ -91,7 +79,6 @@ function showSlide(index) {
     }
   );
 
-
   dots.forEach(
     (dot, i) => {
 
@@ -103,12 +90,10 @@ function showSlide(index) {
     }
   );
 
-
   currentSlide =
     index;
 
 }
-
 
 
 function nextSlide() {
@@ -118,11 +103,9 @@ function nextSlide() {
       currentSlide + 1
     ) % slides.length;
 
-
   showSlide(next);
 
 }
-
 
 
 function restartSlider() {
@@ -134,7 +117,6 @@ function restartSlider() {
     );
 
   }
-
 
   slideTimer =
     setInterval(
@@ -184,54 +166,175 @@ updateHeader();
 
 /* =========================
    PREWORK
-   BEFORE ↔ AFTER
+   PROJECT SLIDER
 ========================= */
 
-const preworkCards =
-  document.querySelectorAll(
-    '.prework-card'
+const preworkBefore =
+  document.querySelector(
+    '.prework-before img'
   );
+
+const preworkAfter =
+  document.querySelector(
+    '.prework-after img'
+  );
+
+
+const preworkProjects = [
+  {
+    before:
+      'images/prework-01-before.jpg',
+    after:
+      'images/prework-01-after.jpg'
+  },
+  {
+    before:
+      'images/prework-02-before.jpg',
+    after:
+      'images/prework-02-after.jpg'
+  },
+  {
+    before:
+      'images/prework-03-before.png',
+    after:
+      'images/prework-03-after.png'
+  }
+];
 
 
 let preworkIndex = 0;
 
 
+/* 전환 전에 모든 이미지 미리 로딩 */
 
-setInterval(
-  () => {
+preworkProjects.forEach(
+  project => {
 
-    preworkIndex =
-      preworkIndex === 0
-        ? 1
-        : 0;
+    const beforeImage =
+      new Image();
 
-
-    preworkCards.forEach(
-      card => {
-
-        const images =
-          card.querySelectorAll(
-            'img'
-          );
+    beforeImage.src =
+      project.before;
 
 
-        images.forEach(
-          (image, index) => {
+    const afterImage =
+      new Image();
 
-            image.classList.toggle(
-              'active',
-              index === preworkIndex
-            );
+    afterImage.src =
+      project.after;
 
-          }
-        );
-
-      }
-    );
-
-  },
-  2800
+  }
 );
+
+
+function preloadImage(src) {
+
+  return new Promise(
+    resolve => {
+
+      const image =
+        new Image();
+
+      image.onload =
+        () => resolve(true);
+
+      image.onerror =
+        () => resolve(false);
+
+      image.src =
+        src;
+
+    }
+  );
+
+}
+
+
+async function showNextPrework() {
+
+  const nextIndex =
+    (
+      preworkIndex + 1
+    ) % preworkProjects.length;
+
+  const nextProject =
+    preworkProjects[
+      nextIndex
+    ];
+
+
+  const loaded =
+    await Promise.all([
+      preloadImage(
+        nextProject.before
+      ),
+      preloadImage(
+        nextProject.after
+      )
+    ]);
+
+
+  /* 두 이미지가 모두 로드됐을 때만 전환 */
+
+  if (
+    !loaded[0] ||
+    !loaded[1]
+  ) {
+
+    return;
+
+  }
+
+
+  preworkBefore.classList.remove(
+    'active'
+  );
+
+  preworkAfter.classList.remove(
+    'active'
+  );
+
+
+  setTimeout(
+    () => {
+
+      preworkBefore.src =
+        nextProject.before;
+
+      preworkAfter.src =
+        nextProject.after;
+
+
+      preworkBefore.classList.add(
+        'active'
+      );
+
+      preworkAfter.classList.add(
+        'active'
+      );
+
+
+      preworkIndex =
+        nextIndex;
+
+    },
+    350
+  );
+
+}
+
+
+if (
+  preworkBefore &&
+  preworkAfter
+) {
+
+  setInterval(
+    showNextPrework,
+    3200
+  );
+
+}
 
 
 
@@ -263,7 +366,6 @@ const revealObserver =
                 'in-view'
               );
 
-
             revealObserver
               .unobserve(
                 entry.target
@@ -283,7 +385,6 @@ const revealObserver =
   );
 
 
-
 reveals.forEach(
   (element, index) => {
 
@@ -295,7 +396,6 @@ reveals.forEach(
           280
         )
       }ms`;
-
 
     revealObserver.observe(
       element
