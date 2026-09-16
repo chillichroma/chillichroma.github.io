@@ -495,59 +495,25 @@ img {
 /* CONCEPT */
 
 .concept-stage {
-  position: relative;
-  min-height: 560px;
-  margin-top: 48px;
+  width: min(100%, 1000px);
+  margin: 0 auto;
+  overflow: visible;
 }
 
-.concept-stage img {
-  position: absolute;
+.concept-image {
   display: block;
-  object-fit: cover;
-}
-
-.concept-01 {
-  left: 7%;
-  top: 6%;
-  width: 46%;
+  width: 100%;
   height: auto;
-  border-radius: 42px;
-}
-
-.concept-02 {
-  right: 7%;
-  top: 40%;
-  width: 46%;
-  height: auto;
-  border-radius: 42px;
-}
-
-
-/* SCROLL REVEAL */
-
-.section-reveal {
+  border-radius: 0;
   opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity .8s ease,
-    transform .8s cubic-bezier(.2,.75,.2,1);
-}
-
-.section-reveal.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(28px) scale(.97);
+  transform: translateY(35px) scale(.96);
   transition:
     opacity .9s ease,
-    transform .9s cubic-bezier(.2,.75,.2,1);
+    transform .9s cubic-bezier(.22,.61,.36,1);
   will-change: opacity, transform;
 }
 
-.reveal.in-view {
+.concept-stage.in-view .concept-image {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
@@ -720,7 +686,7 @@ img {
   margin-bottom: 10px;
 }
 
-/* �명꽣 �곷떒 �ш린 �뺣� */
+/* 푸터 상단 크기 확대 */
 .footer-contact h3 {
   margin: 0;
   font-size: 26px;
@@ -757,7 +723,7 @@ img {
   font-weight: 500;
 }
 
-/* SNS �꾨옒 �띿뒪�� */
+/* SNS 아래 텍스트 */
 .footer-bottom {
   width: min(100%,930px);
   margin: 56px auto 0;
@@ -956,22 +922,16 @@ img {
   }
 
   .concept-stage {
+    width: 100%;
+  }
+
+  .concept-image {
+    width: 100%;
+  }
+
+  .concept-stage {
     min-height: 500px;
     margin-top: 36px;
-  }
-
-  .concept-01 {
-    left: 0;
-    top: 0;
-    width: 80%;
-    border-radius: 28px;
-  }
-
-  .concept-02 {
-    right: 0;
-    top: 48%;
-    width: 80%;
-    border-radius: 28px;
   }
 
   .construction {
