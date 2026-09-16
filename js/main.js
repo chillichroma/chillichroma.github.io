@@ -286,40 +286,18 @@ async function showNextPrework() {
   }
 
 
-  preworkBefore.classList.remove(
-    'active'
-  );
+  /* 미리 로딩된 이미지로 즉시 교체:
+     중간에 배경색이 보이지 않도록 opacity를 내리지 않습니다. */
 
-  preworkAfter.classList.remove(
-    'active'
-  );
+  preworkBefore.src =
+    nextProject.before;
 
-
-  setTimeout(
-    () => {
-
-      preworkBefore.src =
-        nextProject.before;
-
-      preworkAfter.src =
-        nextProject.after;
+  preworkAfter.src =
+    nextProject.after;
 
 
-      preworkBefore.classList.add(
-        'active'
-      );
-
-      preworkAfter.classList.add(
-        'active'
-      );
-
-
-      preworkIndex =
-        nextIndex;
-
-    },
-    350
-  );
+  preworkIndex =
+    nextIndex;
 
 }
 
