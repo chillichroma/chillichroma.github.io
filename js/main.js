@@ -310,6 +310,110 @@ if (
 
 
 /* =========================
+   CONCEPT IMAGE
+   LOAD + SCROLL ANIMATION
+========================= */
+
+const conceptStage =
+  document.querySelector(
+    '.concept-animate'
+  );
+
+const conceptImage =
+  conceptStage
+    ? conceptStage.querySelector(
+        '.concept-image'
+      )
+    : null;
+
+
+function prepareConceptAnimation() {
+
+  if (
+    !conceptStage ||
+    !conceptImage
+  ) {
+    return;
+  }
+
+  /* 먼저 시작 상태를 적용 */
+  conceptStage.classList.add(
+    'concept-ready'
+  );
+
+  const conceptObserver =
+    new IntersectionObserver(
+      entries => {
+
+        entries.forEach(
+          entry => {
+
+            if (
+              entry.isIntersecting
+            ) {
+
+              /* 시작 상태가 실제로 그려진 다음 등장 */
+              requestAnimationFrame(
+                () => {
+
+                  requestAnimationFrame(
+                    () => {
+
+                      conceptStage.classList.add(
+                        'in-view'
+                      );
+
+                    }
+                  );
+
+                }
+              );
+
+              conceptObserver.unobserve(
+                conceptStage
+              );
+
+            }
+
+          }
+        );
+
+      },
+      {
+        threshold: 0.18
+      }
+    );
+
+  conceptObserver.observe(
+    conceptStage
+  );
+
+}
+
+
+/* 캐시 이미지와 최초 로딩 모두 대응 */
+if (
+  conceptImage &&
+  conceptImage.complete
+) {
+
+  prepareConceptAnimation();
+
+} else if (conceptImage) {
+
+  conceptImage.addEventListener(
+    'load',
+    prepareConceptAnimation,
+    {
+      once: true
+    }
+  );
+
+}
+
+
+
+/* =========================
    SCROLL REVEAL
 ========================= */
 
