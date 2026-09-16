@@ -166,74 +166,59 @@ updateHeader();
 
 /* =========================
    PREWORK
-   PROJECT SLIDER
+   PROJECT CROSSFADE
 ========================= */
-
-const preworkBefore =
-  document.querySelector(
-    '.prework-before img'
-  );
-
-const preworkAfter =
-  document.querySelector(
-    '.prework-after img'
-  );
-
 
 const preworkProjects = [
   {
-    before:
-      'images/prework-01-before.jpg',
-    after:
-      'images/prework-01-after.jpg'
+    before: 'images/prework-01-before.jpg',
+    after: 'images/prework-01-after.jpg'
   },
   {
-    before:
-      'images/prework-02-before.jpg',
-    after:
-      'images/prework-02-after.jpg'
+    before: 'images/prework-02-before.jpg',
+    after: 'images/prework-02-after.jpg'
   },
   {
-    before:
-      'images/prework-03-before.png',
-    after:
-      'images/prework-03-after.png'
+    before: 'images/prework-03-before.png',
+    after: 'images/prework-03-after.png'
   }
 ];
 
+const beforeLayers =
+  document.querySelectorAll(
+    '.prework-before .prework-layer'
+  );
+
+const afterLayers =
+  document.querySelectorAll(
+    '.prework-after .prework-layer'
+  );
 
 let preworkIndex = 0;
+let activeLayer = 0;
 
 
-/* 전환 전에 모든 이미지 미리 로딩 */
+/* 모든 프로젝트 이미지 사전 로딩 */
 
 preworkProjects.forEach(
   project => {
 
-    const beforeImage =
-      new Image();
+    const beforeImage = new Image();
+    beforeImage.src = project.before;
 
-    beforeImage.src =
-      project.before;
-
-
-    const afterImage =
-      new Image();
-
-    afterImage.src =
-      project.after;
+    const afterImage = new Image();
+    afterImage.src = project.after;
 
   }
 );
 
 
-function preloadImage(src) {
+function loadImage(src) {
 
   return new Promise(
     resolve => {
 
-      const image =
-        new Image();
+      const image = new Image();
 
       image.onload =
         () => resolve(true);
@@ -241,8 +226,7 @@ function preloadImage(src) {
       image.onerror =
         () => resolve(false);
 
-      image.src =
-        src;
+      image.src = src;
 
     }
   );
@@ -258,53 +242,63 @@ async function showNextPrework() {
     ) % preworkProjects.length;
 
   const nextProject =
-    preworkProjects[
-      nextIndex
-    ];
-
+    preworkProjects[nextIndex];
 
   const loaded =
     await Promise.all([
-      preloadImage(
-        nextProject.before
-      ),
-      preloadImage(
-        nextProject.after
-      )
+      loadImage(nextProject.before),
+      loadImage(nextProject.after)
     ]);
 
-
-  /* 두 이미지가 모두 로드됐을 때만 전환 */
-
-  if (
-    !loaded[0] ||
-    !loaded[1]
-  ) {
-
+  if (!loaded[0] || !loaded[1]) {
     return;
-
   }
 
+  const nextLayer =
+    activeLayer === 0 ? 1 : 0;
 
-  /* 미리 로딩된 이미지로 즉시 교체:
-     중간에 배경색이 보이지 않도록 opacity를 내리지 않습니다. */
-
-  preworkBefore.src =
+  beforeLayers[nextLayer].src =
     nextProject.before;
 
-  preworkAfter.src =
+  afterLayers[nextLayer].src =
     nextProject.after;
 
 
-  preworkIndex =
-    nextIndex;
+  /* 브라우저가 새 이미지를 먼저 그린 다음 크로스페이드 */
+
+  requestAnimationFrame(
+    () => {
+
+      requestAnimationFrame(
+        () => {
+
+          beforeLayers[nextLayer]
+            .classList.add('active');
+
+          afterLayers[nextLayer]
+            .classList.add('active');
+
+          beforeLayers[activeLayer]
+            .classList.remove('active');
+
+          afterLayers[activeLayer]
+            .classList.remove('active');
+
+          activeLayer = nextLayer;
+          preworkIndex = nextIndex;
+
+        }
+      );
+
+    }
+  );
 
 }
 
 
 if (
-  preworkBefore &&
-  preworkAfter
+  beforeLayers.length === 2 &&
+  afterLayers.length === 2
 ) {
 
   setInterval(
@@ -313,7 +307,6 @@ if (
   );
 
 }
-
 
 
 /* =========================
