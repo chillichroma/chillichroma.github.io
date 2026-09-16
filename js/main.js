@@ -1,795 +1,486 @@
+/* =========================
+   MAIN SLIDER
+   independent auto rotation
+========================= */
 
-<!DOCTYPE html>
-<html lang="ko">
+(() => {
 
-<head>
-  <meta charset="UTF-8">
+  const slides =
+    Array.from(
+      document.querySelectorAll(
+        '.hero-slider .slide'
+      )
+    );
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  const dotsWrap =
+    document.querySelector(
+      '.hero-slider .slider-dots'
+    );
 
-  <title>칠리크로마 | Chilli Chroma</title>
+  if (
+    slides.length < 1 ||
+    !dotsWrap
+  ) {
+    return;
+  }
 
-  <meta
-    name="description"
-    content="칠리크로마는 팝업스토어, 포토존, 매장 인테리어, 전시 부스, VMD 등 브랜드 공간을 디자인하고 제작·현장 구현합니다."
-  >
+  let currentSlide = 0;
+  let slideTimer = null;
 
-  <link
-    rel="stylesheet"
-    href="css/style.css"
-  >
-</head>
+  dotsWrap.innerHTML = '';
 
+  const dots =
+    slides.map(
+      (slide, index) => {
 
-<body>
+        const button =
+          document.createElement(
+            'button'
+          );
 
+        button.type = 'button';
+        button.className =
+          index === 0
+            ? 'dot active'
+            : 'dot';
 
-  <!-- =========================
-       HEADER
-  ========================== -->
+        button.setAttribute(
+          'aria-label',
+          `${index + 1}번 슬라이드`
+        );
 
-  <header class="site-header">
+        button.addEventListener(
+          'click',
+          () => {
 
-    <a
-      href="#top"
-      class="brand-home"
-      aria-label="칠리크로마 홈"
-    >
+            showSlide(index);
+            restartSlider();
 
-      <img
-        src="images/header-logo_wt.png"
-        alt="Chilli Chroma"
-        class="brand-logo logo-white"
-      >
+          }
+        );
 
-      <img
-        src="images/header-logo_bk.png"
-        alt="Chilli Chroma"
-        class="brand-logo logo-black"
-      >
+        dotsWrap.appendChild(
+          button
+        );
 
-    </a>
+        return button;
 
+      }
+    );
 
-    <nav class="main-nav">
 
-      <a href="works.html">
-        Works
-      </a>
+  function showSlide(index) {
 
-      <a href="#contact">
-        Contact
-      </a>
+    const safeIndex =
+      (
+        index + slides.length
+      ) % slides.length;
 
-    </nav>
+    slides.forEach(
+      (slide, i) => {
 
-  </header>
+        slide.classList.toggle(
+          'active',
+          i === safeIndex
+        );
 
+      }
+    );
 
+    dots.forEach(
+      (dot, i) => {
 
-  <main id="top">
+        dot.classList.toggle(
+          'active',
+          i === safeIndex
+        );
 
+      }
+    );
 
-    <!-- =========================
-         MAIN SLIDER
-    ========================== -->
+    currentSlide = safeIndex;
 
-    <section
-      class="hero-slider"
-      aria-label="칠리크로마 주요 프로젝트"
-    >
+  }
 
 
-      <div class="slide active s1">
+  function nextSlide() {
 
-        <div class="slide-caption">
+    showSlide(
+      currentSlide + 1
+    );
 
-          <strong>
-            2025 JIMIN IS BACK 포토존
-          </strong>
+  }
 
-          <span>
-            하이브 사옥 앞
-          </span>
 
-        </div>
+  function restartSlider() {
 
-      </div>
+    if (slideTimer !== null) {
+      clearInterval(slideTimer);
+    }
 
+    if (slides.length > 1) {
 
+      slideTimer =
+        window.setInterval(
+          nextSlide,
+          3500
+        );
 
-      <div class="slide s2">
+    }
 
-        <div class="slide-caption">
+  }
 
-          <strong>
-            2026 블랙핑크 × 다마고치 팝업
-          </strong>
 
-          <span>
-            잠실 월드몰
-          </span>
+  showSlide(0);
+  restartSlider();
 
-        </div>
+})();
 
-      </div>
 
+/* =========================
+   HEADER
+========================= */
 
+const header =
+  document.querySelector(
+    '.site-header'
+  );
 
-      <div class="slide s3">
 
-        <div class="slide-caption">
+function updateHeader() {
 
-          <strong>
-            2025 크록스 케이스 팝업
-          </strong>
+  header.classList.toggle(
+    'scrolled',
+    window.scrollY > 20
+  );
 
-          <span>
-            더현대서울
-          </span>
+}
 
-        </div>
 
-      </div>
+window.addEventListener(
+  'scroll',
+  updateHeader,
+  {
+    passive: true
+  }
+);
 
 
-      <!-- 기존 main4 / TESER 제외 -->
+updateHeader();
 
 
-      <div class="slide s5">
 
-        <div class="slide-caption">
+/* =========================
+   PREWORK
+   PROJECT CROSSFADE
+========================= */
 
-          <strong>
-            2024 디어지민 팝업
-          </strong>
+const preworkProjects = [
+  {
+    before: 'images/prework-01-before.jpg',
+    after: 'images/prework-01-after.jpg'
+  },
+  {
+    before: 'images/prework-02-before.jpg',
+    after: 'images/prework-02-after.jpg'
+  },
+  {
+    before: 'images/prework-03-before.png',
+    after: 'images/prework-03-after.png'
+  }
+];
 
-          <span>
-            누디트 익선
-          </span>
+const beforeLayers =
+  document.querySelectorAll(
+    '.prework-before .prework-layer'
+  );
 
-        </div>
+const afterLayers =
+  document.querySelectorAll(
+    '.prework-after .prework-layer'
+  );
 
-      </div>
+let preworkIndex = 0;
+let activeLayer = 0;
 
 
+/* 모든 프로젝트 이미지 사전 로딩 */
 
-      <div class="slide s6">
+preworkProjects.forEach(
+  project => {
 
-        <div class="slide-caption">
+    const beforeImage = new Image();
+    beforeImage.src = project.before;
 
-          <strong>
-            2026 어푸밍 팝업
-          </strong>
+    const afterImage = new Image();
+    afterImage.src = project.after;
 
-          <span>
-            성수동 스토리칸
-          </span>
+  }
+);
 
-        </div>
 
-      </div>
+function loadImage(src) {
 
+  return new Promise(
+    resolve => {
 
+      const image = new Image();
 
-      <div class="slide s7">
+      image.onload =
+        () => resolve(true);
 
-        <div class="slide-caption">
+      image.onerror =
+        () => resolve(false);
 
-          <strong>
-            2025 프레리탁 사무실
-          </strong>
+      image.src = src;
 
-          <span>
-            한국예탁결제원 서울사옥
-          </span>
+    }
+  );
 
-        </div>
+}
 
-      </div>
 
+async function showNextPrework() {
 
+  const nextIndex =
+    (
+      preworkIndex + 1
+    ) % preworkProjects.length;
 
-      <div
-        class="slider-dots"
-        aria-label="슬라이드 선택"
-      >
-      </div>
+  const nextProject =
+    preworkProjects[nextIndex];
 
+  const loaded =
+    await Promise.all([
+      loadImage(nextProject.before),
+      loadImage(nextProject.after)
+    ]);
 
-    </section>
+  if (!loaded[0] || !loaded[1]) {
+    return;
+  }
 
+  const nextLayer =
+    activeLayer === 0 ? 1 : 0;
 
+  beforeLayers[nextLayer].src =
+    nextProject.before;
 
-    <!-- =========================
-         모든 분야의 공간 디자인
-    ========================== -->
+  afterLayers[nextLayer].src =
+    nextProject.after;
 
-    <section
-      class="intro-section"
-      id="works-overview"
-    >
 
+  /* 브라우저가 새 이미지를 먼저 그린 다음 크로스페이드 */
 
-      <div class="intro-head">
+  requestAnimationFrame(
+    () => {
 
+      requestAnimationFrame(
+        () => {
 
-        <img
-          src="images/what-we-do-symbol.png"
-          alt=""
-          class="intro-symbol"
-        >
+          beforeLayers[nextLayer]
+            .classList.add('active');
 
+          afterLayers[nextLayer]
+            .classList.add('active');
 
-        <h1>
-          모든 분야의 공간 디자인
-        </h1>
+          beforeLayers[activeLayer]
+            .classList.remove('active');
 
+          afterLayers[activeLayer]
+            .classList.remove('active');
 
-        <p class="intro-copy">
+          activeLayer = nextLayer;
+          preworkIndex = nextIndex;
 
-          브랜드의 가치를 공간으로 구현합니다.<br>
+        }
+      );
 
-          디자인부터 제작, 현장 구현까지 완성도 높은 공간을 만듭니다.
+    }
+  );
 
-        </p>
+}
 
 
-      </div>
+if (
+  beforeLayers.length === 2 &&
+  afterLayers.length === 2
+) {
 
+  setInterval(
+    showNextPrework,
+    3200
+  );
 
+}
 
-      <!-- =========================
-           SERVICES
-      ========================== -->
 
-      <div class="services">
+/* =========================
+   CONCEPT IMAGE
+   LOAD + SCROLL ANIMATION
+========================= */
 
+const conceptStage =
+  document.querySelector(
+    '.concept-animate'
+  );
 
-        <article class="service">
+const conceptImage =
+  conceptStage
+    ? conceptStage.querySelector(
+        '.concept-image'
+      )
+    : null;
 
-          <div class="thumb square">
 
-            <img
-              src="images/popup-store.jpg"
-              alt="팝업 스토어"
-            >
+function prepareConceptAnimation() {
 
-          </div>
+  if (
+    !conceptStage ||
+    !conceptImage
+  ) {
+    return;
+  }
 
-          <h2>
-            POP-UP STORE
-          </h2>
+  /* 먼저 시작 상태를 적용 */
+  conceptStage.classList.add(
+    'concept-ready'
+  );
 
-          <p>
-            팝업스토어
-          </p>
+  const conceptObserver =
+    new IntersectionObserver(
+      entries => {
 
-        </article>
+        entries.forEach(
+          entry => {
 
+            if (
+              entry.isIntersecting
+            ) {
 
+              /* 시작 상태가 실제로 그려진 다음 등장 */
+              requestAnimationFrame(
+                () => {
 
-        <article class="service">
+                  requestAnimationFrame(
+                    () => {
 
-          <div class="thumb circle">
+                      conceptStage.classList.add(
+                        'in-view'
+                      );
 
-            <img
-              src="images/photo-zone.jpg"
-              alt="포토존"
-            >
+                    }
+                  );
 
-          </div>
+                }
+              );
 
-          <h2>
-            PHOTO ZONE
-          </h2>
+              conceptObserver.unobserve(
+                conceptStage
+              );
 
-          <p>
-            포토존
-          </p>
+            }
 
-        </article>
+          }
+        );
 
+      },
+      {
+        threshold: 0.18
+      }
+    );
 
+  conceptObserver.observe(
+    conceptStage
+  );
 
-        <article class="service">
+}
 
-          <div class="thumb circle">
 
-            <img
-              src="images/interior-design.jpg"
-              alt="매장 인테리어"
-            >
+/* 캐시 이미지와 최초 로딩 모두 대응 */
+if (
+  conceptImage &&
+  conceptImage.complete
+) {
 
-          </div>
+  prepareConceptAnimation();
 
-          <h2>
-            INTERIOR DESIGN
-          </h2>
+} else if (conceptImage) {
 
-          <p>
-            매장 인테리어
-          </p>
+  conceptImage.addEventListener(
+    'load',
+    prepareConceptAnimation,
+    {
+      once: true
+    }
+  );
 
-        </article>
+}
 
 
 
-        <article class="service">
+/* =========================
+   SCROLL REVEAL
+========================= */
 
-          <div class="thumb square">
+const reveals =
+  document.querySelectorAll(
+    '.reveal, .section-reveal'
+  );
 
-            <img
-              src="images/exhibition-booth.jpg"
-              alt="전시 부스"
-            >
 
-          </div>
+const revealObserver =
+  new IntersectionObserver(
 
-          <h2>
-            EXHIBITION &amp; BOOTH
-          </h2>
+    entries => {
 
-          <p>
-            전시 · 부스
-          </p>
+      entries.forEach(
+        entry => {
 
-        </article>
+          if (
+            entry.isIntersecting
+          ) {
 
+            entry.target
+              .classList
+              .add(
+                'in-view'
+              );
 
+            revealObserver
+              .unobserve(
+                entry.target
+              );
 
-        <article class="service">
+          }
 
-          <div class="thumb circle">
+        }
+      );
 
-            <img
-              src="images/display-vmd.jpg"
-              alt="상품 진열 및 VMD"
-            >
+    },
 
-          </div>
+    {
+      threshold: 0.18
+    }
 
-          <h2>
-            DISPLAY &amp; VMD
-          </h2>
+  );
 
-          <p>
-            상품 진열 · VMD
-          </p>
 
-        </article>
+reveals.forEach(
+  (element, index) => {
 
+    element.style
+      .transitionDelay =
+      `${
+        Math.min(
+          index * 70,
+          280
+        )
+      }ms`;
 
+    revealObserver.observe(
+      element
+    );
 
-        <article class="service">
-
-          <div class="thumb circle">
-
-            <img
-              src="images/space-styling.jpg"
-              alt="공간 연출"
-            >
-
-          </div>
-
-          <h2>
-            SPACE STYLING
-          </h2>
-
-          <p>
-            공간 연출
-          </p>
-
-        </article>
-
-
-      </div>
-
-
-
-      <!-- =========================
-           MORE
-      ========================== -->
-
-      <div class="more">
-
-        <span class="plus">
-          +
-        </span>
-
-        <strong>
-          MORE
-        </strong>
-
-      </div>
-
-
-    </section>
-
-
-
-    <!-- =========================
-         WHAT'S DIFFERENT
-    ========================== -->
-
-    <section class="different">
-
-
-      <h2>
-        WHAT'S DIFFERENT?
-      </h2>
-
-
-
-      <!-- PRE WORK -->
-
-      <div
-        class="diff-block prework section-reveal"
-      >
-
-
-        <h3>
-          꼼꼼한 프리 작업
-        </h3>
-
-
-        <p class="desc">
-
-          3D 시안 단계부터 정확한 시뮬레이션으로
-          프로젝트의 안정성과 효율성을 향상 시킵니다.
-
-        </p>
-
-
-
-        <div class="prework-grid">
-
-          <div class="prework-item">
-
-            <div class="prework-card prework-before">
-
-              <img
-                class="prework-layer active"
-                src="images/prework-01-before.jpg"
-                alt="3D 시안"
-              >
-
-              <img
-                class="prework-layer"
-                src="images/prework-02-before.jpg"
-                alt="3D 시안"
-              >
-
-            </div>
-
-            <p class="prework-label">
-              3D 시안
-            </p>
-
-          </div>
-
-
-          <div class="prework-item">
-
-            <div class="prework-card prework-after">
-
-              <img
-                class="prework-layer active"
-                src="images/prework-01-after.jpg"
-                alt="현장 세팅 사진"
-              >
-
-              <img
-                class="prework-layer"
-                src="images/prework-02-after.jpg"
-                alt="현장 세팅 사진"
-              >
-
-            </div>
-
-            <p class="prework-label">
-              현장 세팅 사진
-            </p>
-
-          </div>
-
-        </div>
-
-
-      </div>
-
-
-
-      <!-- CONCEPT DESIGN -->
-
-      <div
-        class="diff-block concept section-reveal"
-      >
-
-
-        <h3>
-          프로젝트 컨셉에 맞춘 공간 디자인
-        </h3>
-
-
-        <p class="desc">
-
-          프로젝트가 전달하고자 하는 목적과 감성, 분위기를 반영한
-          디자인과 효율적인 레이아웃을 설계합니다.
-
-        </p>
-
-
-
-        <div class="concept-stage concept-animate">
-
-            <img
-              src="images/concept-design-01.jpg"
-              alt="프로젝트 컨셉에 맞춘 공간 디자인"
-              class="concept-image"
-            >
-
-          </div>
-
-
-      </div>
-
-
-    </section>
-
-
-
-    <!-- =========================
-         CONSTRUCTION
-    ========================== -->
-
-    <section class="construction">
-
-
-      <div class="construction-inner">
-
-
-        <h3 class="reveal">
-          전문 인력의 시공과 감리
-        </h3>
-
-
-        <p class="reveal">
-
-          풍부한 경험과 노하우를 가진 전문 시공팀과 담당 디자이너가
-          직접 현장을 감리하여 완성도 높은 결과물을 만듭니다.
-
-        </p>
-
-
-
-        <div class="construction-grid">
-
-
-          <img
-            src="images/construction-01.jpg"
-            alt="시공 현장 1"
-            class="reveal"
-          >
-
-
-          <img
-            src="images/construction-02.jpg"
-            alt="시공 현장 2"
-            class="reveal"
-          >
-
-
-        </div>
-
-
-      </div>
-
-
-    </section>
-
-
-
-    <!-- =========================
-         ABOUT
-    ========================== -->
-
-    <section
-      class="about-section section-reveal"
-    >
-
-
-      <div class="about-inner">
-
-
-        <h2>
-          About ChilliChroma
-        </h2>
-
-
-        <p>
-
-          칠리크로마는<br>
-
-          차별화된 디자인과 다채로운 컬러의<br>
-
-          아름다움을 표현하는 디자인을 만듭니다.<br><br>
-
-          틀에 매이지 않는 아이디어로<br>
-
-          특별한 감성을 전달합니다.
-
-        </p>
-
-
-
-        <div class="about-links">
-
-
-          <a href="works.html">
-            Works
-          </a>
-
-
-          <a href="contact.html">
-            Contact
-          </a>
-
-
-        </div>
-
-
-      </div>
-
-
-    </section>
-
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer
-      class="site-footer"
-      id="contact"
-    >
-
-
-      <div class="footer-inner">
-
-
-        <div class="footer-brand">
-
-          <img
-            src="images/footer-logo.png"
-            alt="Chilli Chroma"
-            class="footer-logo"
-          >
-
-        </div>
-
-
-
-        <div class="footer-contact">
-
-
-          <div class="footer-contact-head">
-
-            <h3>
-              Contact
-            </h3>
-
-          </div>
-
-
-          <p>
-
-            월~금 10:00~17:00 (토, 일, 공휴일 휴무)<br>
-
-            ileuki@naver.com<br>
-
-            070 8018 9574<br>
-
-            카카오톡 채널 검색 / 칠리크로마
-
-          </p>
-
-
-        </div>
-
-
-
-        <a
-          class="footer-download-link"
-          href="portfolio.pdf"
-          download
-        >
-          포트폴리오 다운로드
-        </a>
-
-
-      </div>
-
-
-
-      <div class="footer-bottom">
-
-
-        <div class="footer-social">
-
-
-          <a
-            href="https://www.instagram.com/chillichroma/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Instagram
-          </a>
-
-
-          <a
-            href="https://www.youtube.com/@chillichroma"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            YouTube
-          </a>
-
-
-          <a
-            href="https://blog.naver.com/ileuki"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Naver Blog
-          </a>
-
-
-          <a
-            href="https://pf.kakao.com/_xdFTxaG"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            KakaoTalk
-          </a>
-
-
-        </div>
-
-
-
-        <p class="footer-company">
-
-          상호명: (주)칠리크로마&nbsp;&nbsp;&nbsp;
-          대표자 이메일: ileuki@naver.com
-
-        </p>
-
-
-        <p class="copyright">
-
-          Copyright © 2026 (주)칠리크로마 All rights reserved.
-
-        </p>
-
-
-      </div>
-
-
-    </footer>
-
-
-  </main>
-
-
-
-  <script src="js/main.js"></script>
-
-
-</body>
-
-</html>
+  }
+);
