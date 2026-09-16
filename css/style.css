@@ -505,15 +505,20 @@ img {
   width: 100%;
   height: auto;
   border-radius: 0;
+}
+
+/* JS媛� �대�吏� 濡쒕뵫 �꾨즺瑜� �뺤씤�� �� �쒖옉 �곹깭瑜� �곸슜 */
+.concept-stage.concept-ready .concept-image {
   opacity: 0;
-  transform: translateY(35px) scale(.96);
+  transform: translateY(40px) scale(.94);
   transition:
-    opacity .9s ease,
-    transform .9s cubic-bezier(.22,.61,.36,1);
+    opacity 1s ease,
+    transform 1s cubic-bezier(.22,.61,.36,1);
   will-change: opacity, transform;
 }
 
-.concept-stage.in-view .concept-image {
+/* �붾㈃�� �ㅼ뼱�붿쓣 �� �� 踰덈쭔 �ㅽ뻾 */
+.concept-stage.concept-ready.in-view .concept-image {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
@@ -686,7 +691,7 @@ img {
   margin-bottom: 10px;
 }
 
-/* 푸터 상단 크기 확대 */
+/* �명꽣 �곷떒 �ш린 �뺣� */
 .footer-contact h3 {
   margin: 0;
   font-size: 26px;
@@ -723,7 +728,7 @@ img {
   font-weight: 500;
 }
 
-/* SNS 아래 텍스트 */
+/* SNS �꾨옒 �띿뒪�� */
 .footer-bottom {
   width: min(100%,930px);
   margin: 56px auto 0;
