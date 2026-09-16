@@ -535,8 +535,8 @@ img {
 
 .construction {
   position: relative;
-  min-height: 860px;
-  padding: 150px 32px;
+  min-height: 960px;
+  padding: 70px 0 100px;
   overflow: hidden;
   color: var(--red);
   background:
@@ -550,7 +550,8 @@ img {
 .construction-inner {
   position: relative;
   z-index: 1;
-  max-width: 1180px;
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
   text-align: center;
 }
@@ -561,27 +562,37 @@ img {
 }
 
 .construction-grid {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 42px;
-  margin-top: 72px;
+  position: relative;
+  width: 100%;
+  height: 700px;
+  margin-top: 76px;
 }
 
 .construction-grid img {
+  position: absolute;
   display: block;
-  width: auto;
-  height: auto;
-  max-width: 44%;
-  object-fit: contain;
+  object-fit: cover;
+  margin: 0;
 }
 
+/* �댁쟾 �ъ씠�몄쿂�� �쇱そ�� �ш퀬 媛�濡쒕줈 湲멸쾶, �꾨옒履� 諛곗튂 */
 .construction-grid img:first-child {
-  margin-top: 0;
+  left: 0;
+  top: 205px;
+  width: 65%;
+  height: auto;
+  aspect-ratio: 1.9 / 1;
+  object-fit: cover;
 }
 
+/* �ㅻⅨ履쎌� �� �묎퀬 �꾩そ�� 諛곗튂 */
 .construction-grid img:last-child {
-  margin-top: 74px;
+  right: 4%;
+  top: 0;
+  width: 31.5%;
+  height: auto;
+  aspect-ratio: 1.08 / 1;
+  object-fit: cover;
 }
 
 
@@ -956,19 +967,33 @@ img {
     font-size: 14px;
   }
 
+  .construction {
+    min-height: auto;
+    padding: 70px 20px 80px;
+    background-attachment: scroll;
+  }
+
   .construction-grid {
+    position: static;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 26px;
+    width: 100%;
+    height: auto;
     margin-top: 42px;
   }
 
-  .construction-grid img {
-    width: auto;
+  .construction-grid img,
+  .construction-grid img:first-child,
+  .construction-grid img:last-child {
+    position: static;
+    width: 100%;
+    max-width: 100%;
     height: auto;
-    max-width: 88%;
-    margin-top: 0 !important;
+    aspect-ratio: auto;
+    margin: 0 !important;
+    object-fit: contain;
   }
 
   .about-section {
