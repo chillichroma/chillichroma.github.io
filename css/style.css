@@ -59,6 +59,10 @@ img {
 }
 
 .brand-home {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: inline-flex;
   align-items: center;
   text-decoration: none;
@@ -67,7 +71,7 @@ img {
 .brand-logo {
   display: block;
   width: auto;
-  height: clamp(20px, 1.55vw, 30px);
+  height: clamp(22px, 1.705vw, 33px);
 }
 
 .logo-black {
@@ -83,6 +87,7 @@ img {
 }
 
 .main-nav {
+  margin-left: auto;
   display: flex;
   align-items: center;
   gap: 32px;
@@ -114,7 +119,7 @@ img {
   position: relative;
   width: 100%;
   height: 70vh;
-  min-height: 650px;
+  min-height: 500px;
   overflow: hidden;
   background: #ddd;
 }
@@ -142,6 +147,8 @@ img {
 .s5 { background-image: url("../images/main5.jpg"); }
 .s6 { background-image: url("../images/main6.jpg"); }
 .s7 { background-image: url("../images/main7.jpg"); }
+
+.s8 { background-image: url("../images/main8.jpg"); }
 
 .slide-caption {
   position: relative;
@@ -781,7 +788,7 @@ img {
   }
 
   .brand-logo {
-    height: 14px;
+    height: 15.4px;
   }
 
   .main-nav {
