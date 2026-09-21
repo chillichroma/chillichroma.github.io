@@ -1049,3 +1049,32 @@ img {
   }
 
 }
+
+/* WORKS PAGE */
+.works-page { background:#fff; }
+.works-page .site-header { position:fixed; background:var(--yellow); }
+.works-main { padding-top:60px; background:#fff; }
+.works-pdf-wrap { width:100%; }
+.works-pdf {
+  display:block;
+  width:100%;
+  height:calc(100vh - 60px);
+  min-height:720px;
+  border:0;
+  background:#fff;
+}
+.works-pdf-fallback {
+  margin:0;
+  padding:14px 20px 20px;
+  text-align:center;
+  font-size:13px;
+}
+.works-pdf-fallback a { color:inherit; text-decoration:underline; }
+
+@media (max-width:767px) {
+  .works-pdf { min-height:600px; }
+}
+
+.works-pdf + .works-pdf {
+  border-top: 12px solid #fff;
+}
