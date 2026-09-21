@@ -484,3 +484,30 @@ reveals.forEach(
 
   }
 );
+
+
+// Mobile side menu
+(() => {
+  const buttons = document.querySelectorAll(".mobile-menu-button");
+  buttons.forEach((button) => {
+    const header = button.closest(".site-header");
+    const menu = header ? header.querySelector(".mobile-side-menu") : null;
+    const close = menu ? menu.querySelector(".mobile-menu-close") : null;
+    if (!menu) return;
+
+    const openMenu = () => {
+      menu.classList.add("open");
+      menu.setAttribute("aria-hidden", "false");
+      button.setAttribute("aria-expanded", "true");
+    };
+    const closeMenu = () => {
+      menu.classList.remove("open");
+      menu.setAttribute("aria-hidden", "true");
+      button.setAttribute("aria-expanded", "false");
+    };
+
+    button.addEventListener("click", openMenu);
+    if (close) close.addEventListener("click", closeMenu);
+    menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+  });
+})();
