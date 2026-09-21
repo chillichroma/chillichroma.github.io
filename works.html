@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,7 +13,7 @@
 <header class="site-header">
 
     <a
-      href="#top"
+      href="index.html"
       class="brand-home"
       aria-label="칠리크로마 홈"
     >
@@ -46,26 +47,7 @@
 
   </header>
 <main class="works-main">
-  <div class="works-pdf-wrap">
-    <iframe
-      class="works-pdf"
-      src="Chilli_Chroma2026-9-HP1.pdf"
-      title="ChilliChroma Portfolio 2026 Part 1"
-    ></iframe>
-
-    <iframe
-      class="works-pdf"
-      src="Chilli_Chroma2026-9-HP2.pdf"
-      title="ChilliChroma Portfolio 2026 Part 2"
-    ></iframe>
-
-    <p class="works-pdf-fallback">
-      PDF가 표시되지 않으면
-      <a href="Chilli_Chroma2026-9-HP1.pdf" target="_blank" rel="noopener">HP1 열기</a>
-      /
-      <a href="Chilli_Chroma2026-9-HP2.pdf" target="_blank" rel="noopener">HP2 열기</a>
-    </p>
-  </div>
+  <div id="portfolio-pages" class="portfolio-pages" aria-label="ChilliChroma Portfolio"></div>
 </main>
 <footer
       class="site-footer"
@@ -195,6 +177,7 @@
 
 
     </footer>
+<script type="module" src="js/works-pdf.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
