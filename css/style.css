@@ -1644,3 +1644,126 @@ img {
     }
   }
 }
+
+
+/* ===== v20 requested fixes ===== */
+
+/* Works only: always yellow header + black logo/nav; no transparent state. */
+.works-page .site-header,
+.works-page .site-header.scrolled {
+  background:var(--yellow) !important;
+}
+.works-page .site-header .logo-white,
+.works-page .site-header.scrolled .logo-white {
+  display:none !important;
+}
+.works-page .site-header .logo-black,
+.works-page .site-header.scrolled .logo-black {
+  display:block !important;
+}
+.works-page .site-header .main-nav a,
+.works-page .site-header.scrolled .main-nav a,
+.works-page .site-header .inquiry-icon,
+.works-page .site-header.scrolled .inquiry-icon,
+.works-page .site-header .mobile-menu-button,
+.works-page .site-header.scrolled .mobile-menu-button {
+  color:#000 !important;
+}
+
+/* SVG contact icons are included in images/; no extra manual icon images required. */
+.contact-method-icon {
+  display:block;
+  flex:0 0 auto;
+}
+
+/* Mobile-only requested behavior. */
+.mobile-break { display:none; }
+
+@media (max-width:767px) {
+  /* Contact hero PNG text centered vertically on mobile. */
+  .contact-hero-text-wrap {
+    top:50% !important;
+    bottom:auto !important;
+    left:50% !important;
+    width:84vw;
+    transform:translate(-50%,-50%) !important;
+  }
+
+  /* Preserve rise animation relative to its centered final position. */
+  .contact-hero-text {
+    opacity:0;
+    transform:translateY(56px);
+  }
+
+  /* Mobile contact copy line break. */
+  .mobile-break { display:inline; }
+
+  /* Side menu opens from the LEFT. */
+  .mobile-side-menu {
+    left:0 !important;
+    right:auto !important;
+    transform:translateX(-100%) !important;
+  }
+  .mobile-side-menu.open {
+    transform:translateX(0) !important;
+  }
+}
+
+
+/* ===== v21 Contact: text below existing image copy + unified red typography ===== */
+.contact-page {
+  --contact-red:#f40000;
+}
+
+/* The hero artwork already contains text, so place the separate PNG lower. */
+.contact-hero-text-wrap {
+  top:auto !important;
+  bottom:4.5vw !important;
+  transform:translateX(-50%) !important;
+  width:min(66vw,820px) !important;
+}
+
+/* Contact information typography unified to brand red. */
+.contact-info-section,
+.contact-info-section a,
+.contact-method strong,
+.contact-method span,
+.contact-hours,
+.contact-hours strong,
+.contact-hours span,
+.contact-form-cta,
+.contact-form-cta > strong {
+  color:var(--contact-red) !important;
+}
+
+/* Four arrows between copy and inquiry button. */
+.contact-cta-arrows {
+  margin:20px 0 18px;
+  color:var(--contact-red);
+  font-size:28px;
+  font-weight:500;
+  line-height:1;
+  letter-spacing:10px;
+  text-align:center;
+}
+
+/* Keep the CTA visually consistent with the original red contact treatment. */
+.contact-form-cta > a {
+  color:var(--contact-red) !important;
+  border-color:var(--contact-red) !important;
+}
+
+@media (max-width:767px) {
+  /* Mobile: image already has copy, so the extra PNG sits lower rather than centered. */
+  .contact-hero-text-wrap {
+    top:auto !important;
+    bottom:24px !important;
+    width:82vw !important;
+    transform:translateX(-50%) !important;
+  }
+  .contact-cta-arrows {
+    margin:18px 0 16px;
+    font-size:24px;
+    letter-spacing:7px;
+  }
+}
