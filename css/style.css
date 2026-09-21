@@ -1767,3 +1767,30 @@ img {
     letter-spacing:7px;
   }
 }
+
+/* ===== v22 ===== */
+.home-page .site-header:not(.scrolled) .inquiry-icon span,
+body:not(.works-page):not(.contact-page) .site-header:not(.scrolled) .inquiry-icon span { background:#fff !important; }
+.home-page .site-header.scrolled .inquiry-icon span,
+body:not(.works-page):not(.contact-page) .site-header.scrolled .inquiry-icon span { background:#000 !important; }
+
+.works-page .site-header .main-nav a:hover,
+.works-page .site-header.scrolled .main-nav a:hover,
+.contact-page .site-header .main-nav a:hover,
+.contact-page .site-header.scrolled .main-nav a:hover { color:#f40000 !important; }
+
+.hero-slider { position:relative; }
+.hero-arrow {
+  position:absolute; z-index:30; top:50%; width:48px; height:64px;
+  padding:0; border:0; background:transparent; color:#fff;
+  font:300 58px/1 Arial,sans-serif; cursor:pointer;
+  transform:translateY(-50%); opacity:.82;
+  transition:opacity .2s ease,color .2s ease;
+}
+.hero-arrow:hover { opacity:1; color:#f40000; }
+.hero-prev { left:24px; }
+.hero-next { right:24px; }
+@media (max-width:767px) {
+  .hero-arrow { display:none !important; }
+  .hero-slider { touch-action:pan-y; }
+}
