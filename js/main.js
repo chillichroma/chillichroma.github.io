@@ -511,3 +511,30 @@ reveals.forEach(
     menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
   });
 })();
+
+/* ===== v22 hero manual navigation ===== */
+(() => {
+  const hero=document.querySelector('.hero-slider');
+  if(!hero) return;
+  const slides=()=>Array.from(hero.querySelectorAll('.slide'));
+  const dots=()=>Array.from(document.querySelectorAll('.hero-dots button, .slider-dots button, .dots button, .dot'));
+  const current=()=>{
+    const ss=slides();
+    let i=ss.findIndex(x=>x.classList.contains('active'));
+    if(i<0) i=ss.findIndex(x=>getComputedStyle(x).opacity!=='0' && getComputedStyle(x).display!=='none');
+    return i<0?0:i;
+  };
+  const move=(dir)=>{
+    const ds=dots(), ss=slides(), i=current(), next=(i+dir+ss.length)%ss.length;
+    if(ds[next]) { ds[next].click(); return; }
+    ss.forEach((x,n)=>x.classList.toggle('active',n===next));
+  };
+  hero.querySelector('.hero-prev')?.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();move(-1)});
+  hero.querySelector('.hero-next')?.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();move(1)});
+  let sx=null,sy=null;
+  hero.addEventListener('touchstart',e=>{const t=e.changedTouches[0];sx=t.clientX;sy=t.clientY},{passive:true});
+  hero.addEventListener('touchend',e=>{
+    if(sx===null)return; const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy; sx=sy=null;
+    if(Math.abs(dx)>=45 && Math.abs(dx)>Math.abs(dy)*1.25) move(dx<0?1:-1);
+  },{passive:true});
+})();
