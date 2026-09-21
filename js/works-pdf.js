@@ -11,46 +11,42 @@ const files = [
 const container = document.getElementById("portfolio-pages");
 
 async function renderPdf(file) {
-  const pdf = await pdfjsLib.getDocument(file).promise;
+  const pdf = await pdfjsLib.getDocument({
+    url: file,
+    disableFontFace: false,
+    useSystemFonts: true
+  }).promise;
 
   for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
     const page = await pdf.getPage(pageNumber);
     const baseViewport = page.getViewport({ scale: 1 });
-
-    // 화면 폭에 맞추되 과도한 메모리 사용은 막음.
     const targetWidth = Math.min(window.innerWidth, 1800);
     const scale = targetWidth / baseViewport.width;
     const viewport = page.getViewport({ scale });
 
     const canvas = document.createElement("canvas");
-    const context = canvas.getContext("2d", { alpha: false });
+    const ctx = canvas.getContext("2d", { alpha: false });
 
-    canvas.width = Math.ceil(viewport.width);
-    canvas.height = Math.ceil(viewport.height);
+    const outputScale = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.floor(viewport.width * outputScale);
+    canvas.height = Math.floor(viewport.height * outputScale);
+    canvas.style.width = "100%";
+    canvas.style.height = "auto";
+    canvas.className = "portfolio-page";
+
+    const transform = outputScale !== 1
+      ? [outputScale, 0, 0, outputScale, 0, 0]
+      : null;
 
     await page.render({
-      canvasContext: context,
+      canvasContext: ctx,
       viewport,
+      transform,
+      intent: "display",
       background: "rgb(255,255,255)"
     }).promise;
 
-    // 브라우저 PDF 뷰어 대신 페이지 자체만 이미지로 표시.
-    const blob = await new Promise(resolve =>
-      canvas.toBlob(resolve, "image/jpeg", 0.94)
-    );
-
-    const img = document.createElement("img");
-    img.className = "portfolio-page";
-    img.alt = "";
-    img.loading = "lazy";
-    img.decoding = "async";
-    img.src = URL.createObjectURL(blob);
-
-    container.appendChild(img);
-
-    // canvas 메모리 즉시 해제
-    canvas.width = 1;
-    canvas.height = 1;
+    container.appendChild(canvas);
     page.cleanup();
   }
 }
