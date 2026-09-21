@@ -514,7 +514,7 @@ img {
   border-radius: 0;
 }
 
-/* JS媛� �대�吏� 濡쒕뵫 �꾨즺瑜� �뺤씤�� �� �쒖옉 �곹깭瑜� �곸슜 */
+/* JS가 이미지 로딩 완료를 확인한 뒤 시작 상태를 적용 */
 .concept-stage.concept-ready .concept-image {
   opacity: 0;
   transform: translateY(40px) scale(.94);
@@ -524,7 +524,7 @@ img {
   will-change: opacity, transform;
 }
 
-/* �붾㈃�� �ㅼ뼱�붿쓣 �� �� 踰덈쭔 �ㅽ뻾 */
+/* 화면에 들어왔을 때 한 번만 실행 */
 .concept-stage.concept-ready.in-view .concept-image {
   opacity: 1;
   transform: translateY(0) scale(1);
@@ -687,7 +687,7 @@ img {
   margin-bottom: 10px;
 }
 
-/* �명꽣 �곷떒 �ш린 �뺣� */
+/* 푸터 상단 크기 확대 */
 .footer-contact h3 {
   margin: 0;
   font-size: 26px;
@@ -724,7 +724,7 @@ img {
   font-weight: 500;
 }
 
-/* SNS �꾨옒 �띿뒪�� */
+/* SNS 아래 텍스트 */
 .footer-bottom {
   width: min(100%,930px);
   margin: 56px auto 0;
@@ -1793,4 +1793,38 @@ body:not(.works-page):not(.contact-page) .site-header.scrolled .inquiry-icon spa
 @media (max-width:767px) {
   .hero-arrow { display:none !important; }
   .hero-slider { touch-action:pan-y; }
+}
+
+
+/* ===== v23 inquiry icon hover ===== */
+.inquiry-icon {
+  position:absolute;
+  overflow:visible;
+}
+.inquiry-hover-text {
+  position:absolute;
+  right:0;
+  top:50%;
+  white-space:nowrap;
+  font-style:normal;
+  font-size:14px;
+  font-weight:700;
+  line-height:1;
+  color:#f40000;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-50%);
+  transition:opacity .18s ease;
+}
+.inquiry-icon:hover span {
+  opacity:0;
+}
+.inquiry-icon:hover .inquiry-hover-text {
+  opacity:1;
+  visibility:visible;
+}
+
+/* Mobile has no mouse hover: keep hamburger/menu behavior unchanged. */
+@media (max-width:767px) {
+  .inquiry-hover-text { display:none !important; }
 }
