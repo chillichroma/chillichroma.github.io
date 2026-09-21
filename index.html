@@ -56,17 +56,29 @@
     </a>
 
 
-    <nav class="main-nav">
+    <nav class="main-nav" aria-label="주요 메뉴">
+        <a href="works.html">Works</a>
+        <a href="contact.html">Contact</a>
+      </nav>
 
-      <a href="works.html">
-        Works
+      <a class="inquiry-icon" href="https://form.naver.com/response/vDkosWatLVVUat0REd6pzA"
+         target="_blank" rel="noopener" aria-label="문의하기" title="문의하기">
+        <span></span><span></span><span></span>
       </a>
 
-      <a href="#contact">
-        Contact
-      </a>
+      <button class="mobile-menu-button" type="button" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
 
-    </nav>
+      <aside class="mobile-side-menu" aria-hidden="true">
+        <button class="mobile-menu-close" type="button" aria-label="메뉴 닫기">×</button>
+        <nav>
+          <a href="works.html">Works</a>
+          <a href="contact.html">Contact</a>
+          <a href="https://form.naver.com/response/vDkosWatLVVUat0REd6pzA"
+             target="_blank" rel="noopener">문의하기</a>
+        </nav>
+      </aside>
 
   </header>
 
