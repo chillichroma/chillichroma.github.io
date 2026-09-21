@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_레이어_1" data-name="레이어_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 55 52">
+  <!-- Generator: Adobe Illustrator 30.6.0, SVG Export Plug-In . SVG Version: 2.1.4 Build 109)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+        stroke: #f40000;
+        stroke-linejoin: round;
+        stroke-width: 3px;
+      }
+
+      .st1 {
+        fill: #f40000;
+      }
+    </style>
+  </defs>
+  <path class="st0" d="M27.5,1.5C12.5,1.5,1.5,10.5,1.5,22.5s5,15,13,18l-3,10,12-7h4c15,0,26-9,26-21S42.5,1.5,27.5,1.5Z"/>
+  <g>
+    <path class="st1" d="M8.4,19.2v-2.3h9.2v2.3h-3.2v8.4h-2.8v-8.4h-3.2Z"/>
+    <path class="st1" d="M19.9,27.6h-3l3.5-10.6h3.8l3.5,10.6h-3l-2.4-7.8h0l-2.4,7.8ZM19.4,23.4h5.8v2.1h-5.8v-2.1Z"/>
+    <path class="st1" d="M28.8,27.6v-10.6h2.8v8.4h4.3v2.3h-7.1Z"/>
+    <path class="st1" d="M37.1,27.6v-10.6h2.8v4.3h.1l3.3-4.3h3.3l-3.6,4.7,3.7,5.9h-3.3l-2.5-4-1,1.3v2.8h-2.8Z"/>
+  </g>
+</svg>
