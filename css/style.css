@@ -260,7 +260,7 @@ img {
 /* SERVICE GRID */
 
 .services {
-  max-width: 760px;
+  max-width: 912px;
   margin: 26px auto 0;
   display: grid;
   grid-template-columns: repeat(3,1fr);
@@ -271,7 +271,7 @@ img {
 .service {
   min-width: 0;
   display: grid;
-  grid-template-rows: 210px auto auto;
+  grid-template-rows: 252px auto auto;
   justify-items: center;
   align-items: start;
   text-align: center;
@@ -279,19 +279,19 @@ img {
 
 .thumb {
   position: relative;
-  width: 189px;
-  height: 189px;
+  width: 227px;
+  height: 227px;
   margin: 0 auto;
   align-self: center;
   overflow: hidden;
-  border: 12px solid var(--red);
+  border: 16px solid var(--red);
   background: #eee;
   transition: filter .35s ease;
 }
 
 .thumb.square {
-  width: 170px;
-  height: 170px;
+  width: 204px;
+  height: 204px;
   border-radius: 0;
 }
 
@@ -339,7 +339,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000;
+  color: var(--yellow);
   font-family:
     Pretendard,
     "Pretendard Variable",
@@ -352,7 +352,7 @@ img {
 
 .service p {
   margin: 0;
-  color: #777;
+  color: var(--yellow);
   font-size: 13px;
   line-height: 1.12;
   font-weight: 400;
@@ -385,7 +385,7 @@ img {
 .more strong {
   display: block;
   margin-top: 18px;
-  color: #000;
+  color: var(--yellow);
   font-size: 34px;
   line-height: 1;
   font-weight: 800;
@@ -848,21 +848,21 @@ img {
 
   .service {
     grid-template-rows:
-      min(39vw,148px)
+      min(46.8vw,178px)
       auto
       auto;
   }
 
   .thumb {
-    width: min(35.1vw,133px);
-    height: min(35.1vw,133px);
+    width: min(42.12vw,160px);
+    height: min(42.12vw,160px);
     margin: 0 auto;
-    border-width: 12px;
+    border-width: 16px;
   }
 
   .thumb.square {
-    width: min(31.6vw,120px);
-    height: min(31.6vw,120px);
+    width: min(37.92vw,144px);
+    height: min(37.92vw,144px);
   }
 
   .service h2 {
@@ -2137,4 +2137,42 @@ body:not(.works-page):not(.contact-page) .site-header.scrolled .inquiry-icon spa
 @media (max-width:767px) {
   .contact-methods { margin-top:18px !important; }
   .contact-hours strong { font-weight:500 !important; }
+}
+
+/* ===== v25.9 Services final spacing / type colors ===== */
+@media (min-width:768px) {
+  .services {
+    max-width: 1026px;
+    column-gap: 24px;
+    row-gap: 100px;
+  }
+  .service {
+    grid-template-rows: 272px auto auto;
+  }
+}
+
+/* English category names: header yellow, +5% from v25.8 */
+.service h2 {
+  color: var(--yellow);
+  font-size: 18.5px;
+}
+
+/* Korean category names: warm yellow-orange, +5% from v25.8 */
+.service p {
+  color: #ff7900;
+  font-size: 13.65px;
+}
+
+/* MORE stays black; plus stays yellow */
+.more strong { color: #111; }
+.more .plus { color: var(--yellow); }
+
+@media (max-width:767px) {
+  .services {
+    width: min(100%, 380px);
+    column-gap: 28px;
+    row-gap: 34px;
+  }
+  .service h2 { font-size: 13.65px; }
+  .service p { font-size: 12.6px; }
 }
