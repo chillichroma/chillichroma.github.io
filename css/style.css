@@ -2193,3 +2193,20 @@ body:not(.works-page):not(.contact-page) .site-header.scrolled .inquiry-icon spa
     font-weight: 500;
   }
 }
+
+
+/* ===== v25.11 requested refinements ===== */
+@media (min-width:768px) {
+  /* Main service thumbnails: horizontal column gap */
+  .services {
+    column-gap: 12px !important;
+    row-gap: 60px !important;
+  }
+
+  /* Instagram thumbnails: match desktop YouTube section width */
+  .instagram-preview-grid {
+    width: min(900px, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
