@@ -1986,3 +1986,41 @@ body:not(.works-page):not(.contact-page) .site-header.scrolled .inquiry-icon spa
   padding-bottom: 0 !important;
   border-bottom: 0 !important;
 }
+
+
+/* ===== v25.2 mobile typography + 3 YouTube Shorts ===== */
+/* Desktop: show all three 9:16 Shorts in one centered row. */
+.youtube-preview-grid {
+  width:min(900px, 100%);
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:16px;
+}
+
+@media (max-width:767px) {
+  /* Match every main-page explanatory paragraph to the Prework description. */
+  .home-page .construction p,
+  .home-page .diff-block .desc,
+  .home-page .about-section p,
+  .home-page .social-head p {
+    font-size:15px !important;
+    line-height:1.6 !important;
+  }
+
+  /* Keep the existing two-up mobile Short width; swipe horizontally for the third. */
+  .youtube-preview-grid {
+    display:flex !important;
+    width:100% !important;
+    max-width:none !important;
+    gap:8px !important;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .youtube-preview-grid::-webkit-scrollbar { display:none; }
+  .youtube-preview-grid .video-preview {
+    flex:0 0 calc((100% - 8px) / 2);
+    scroll-snap-align:start;
+  }
+}
