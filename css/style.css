@@ -2068,3 +2068,46 @@ body:not(.works-page):not(.contact-page) .site-header.scrolled .inquiry-icon spa
   .contact-hours { margin-top:62px !important; gap:8px !important; }
   .contact-hours span { white-space:normal; font-size:14px; }
 }
+\n\n/* ===== v25.5 Contact final refinement ===== */
+.contact-page { --contact-ink:#222222; }
+.contact-info-section,
+.contact-info-section a,
+.contact-method strong,
+.contact-hours,
+.contact-hours strong,
+.contact-hours span,
+.contact-form-cta,
+.contact-form-cta > strong,
+.contact-cta-arrows {
+  color:var(--contact-ink) !important;
+}
+.contact-intro { color:var(--contact-ink) !important; margin-bottom:105px !important; }
+.contact-intro h2 { font-size:25px !important; line-height:1.4 !important; font-weight:500 !important; }
+.contact-intro p { margin-top:12px !important; font-size:15px !important; line-height:1.65 !important; font-weight:400 !important; }
+.contact-methods { margin-bottom:0 !important; }
+.contact-method { gap:30px !important; }
+.contact-method-label { display:none !important; }
+.contact-method strong { font-weight:500 !important; color:var(--contact-ink) !important; }
+.contact-form-cta { margin-top:145px !important; }
+.contact-form-cta > strong { font-weight:500 !important; }
+.contact-cta-arrows { color:var(--contact-ink) !important; }
+.contact-form-cta > a {
+  color:var(--contact-ink) !important;
+  border-color:var(--contact-ink) !important;
+  font-weight:500 !important;
+}
+.contact-hours { margin-top:105px !important; gap:7px !important; font-weight:400 !important; color:var(--contact-ink) !important; }
+.contact-hours strong { font-size:17px !important; font-weight:400 !important; margin:0 !important; }
+.contact-hours span { font-size:16px !important; font-weight:400 !important; }
+@media (max-width:767px) {
+  .contact-intro { margin-bottom:72px !important; }
+  .contact-intro h2 { font-size:20px !important; font-weight:500 !important; }
+  .contact-intro p { font-size:13px !important; font-weight:400 !important; }
+  .contact-methods { gap:58px !important; }
+  .contact-method { gap:18px !important; }
+  .contact-form-cta { margin-top:105px !important; }
+  .contact-form-cta > strong { font-weight:500 !important; }
+  .contact-hours { margin-top:78px !important; gap:6px !important; }
+  .contact-hours strong { font-size:15px !important; font-weight:400 !important; }
+  .contact-hours span { font-size:13px !important; font-weight:400 !important; white-space:nowrap !important; }
+}
