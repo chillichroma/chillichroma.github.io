@@ -2210,3 +2210,22 @@ body:not(.works-page):not(.contact-page) .site-header.scrolled .inquiry-icon spa
     margin-right: auto !important;
   }
 }
+
+/* ===== v25.12 — service thumbnail visual spacing only ===== */
+@media (min-width: 768px) {
+  .services {
+    max-width: 970px !important;
+    column-gap: 12px !important;
+    row-gap: 60px !important;
+  }
+}
+
+
+/* ===== v25.13 — About description typography ===== */
+.about-section .about-copy,
+.about-section .about-desc,
+.about-section .about-text,
+.about-section .about-body,
+.about-section p {
+  font-size: 17px !important;
+}
