@@ -2111,3 +2111,30 @@ body:not(.works-page):not(.contact-page) .site-header.scrolled .inquiry-icon spa
   .contact-hours strong { font-size:15px !important; font-weight:400 !important; }
   .contact-hours span { font-size:13px !important; font-weight:400 !important; white-space:nowrap !important; }
 }
+
+/* ===== v25.6 Contact red / simplified intro ===== */
+.contact-page { --contact-ink:var(--contact-red); }
+.contact-info-section,
+.contact-info-section a,
+.contact-method strong,
+.contact-hours,
+.contact-hours strong,
+.contact-hours span,
+.contact-form-cta,
+.contact-form-cta > strong,
+.contact-cta-arrows {
+  color:var(--contact-red) !important;
+}
+.contact-method strong { color:var(--contact-red) !important; }
+.contact-form-cta > a {
+  color:var(--contact-red) !important;
+  border-color:var(--contact-red) !important;
+}
+.contact-hours strong { font-weight:500 !important; }
+.contact-hours span { font-weight:400 !important; }
+/* Keep the breathing room after removing the intro copy. */
+.contact-methods { margin-top:34px !important; }
+@media (max-width:767px) {
+  .contact-methods { margin-top:18px !important; }
+  .contact-hours strong { font-weight:500 !important; }
+}
