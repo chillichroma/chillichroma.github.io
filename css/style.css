@@ -2176,3 +2176,20 @@ body:not(.works-page):not(.contact-page) .site-header.scrolled .inquiry-icon spa
   .service h2 { font-size: 13.65px; }
   .service p { font-size: 12.6px; }
 }
+
+/* ===== v25.10 Services requested final values ===== */
+@media (min-width:768px) {
+  .services {
+    margin-top: 35px;
+    column-gap: 18px;
+    row-gap: 60px;
+  }
+  .service h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .service p {
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
