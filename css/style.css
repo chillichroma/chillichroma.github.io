@@ -1938,3 +1938,51 @@ body:not(.works-page):not(.contact-page) .site-header.scrolled .inquiry-icon spa
     gap:8px;
   }
 }
+
+/* ===== v25 requested refinements ===== */
+/* Footer download underline applies to text only, not the arrow. */
+.footer-download-link { border-bottom:0 !important; padding-bottom:0 !important; }
+.footer-download-link > span { display:inline-block; padding-bottom:4px; border-bottom:1px solid currentColor; }
+
+/* Keep the four arrows inside the inquiry button width. */
+.contact-form-cta > a { min-width:220px; box-sizing:border-box; text-align:center; }
+.contact-cta-arrows { width:220px !important; max-width:220px !important; box-sizing:border-box; }
+
+@media (max-width:767px) {
+  /* Works begins below the fixed 60px mobile header. */
+  .works-page .works-main,
+  .works-page .works-image-main { padding-top:60px !important; }
+
+  /* Main-page titles/descriptions: unified to the Prework typography. */
+  .home-page .different > h2,
+  .home-page .diff-block h3,
+  .home-page .construction h3,
+  .home-page .about-section h2,
+  .home-page .social-head h2 { font-size:27px !important; line-height:1.25 !important; }
+  .home-page .diff-block .desc,
+  .home-page .about-section p,
+  .home-page .social-head p { font-size:15px !important; line-height:1.6 !important; }
+
+  /* Mobile side-tab typography reduced to about 80% of previous size. */
+  .mobile-side-menu a { font-size:19px !important; }
+
+  /* CTA arrows remain within the mobile button width as well. */
+  .contact-form-cta > a { min-width:190px; }
+  .contact-cta-arrows { width:190px !important; max-width:190px !important; }
+}
+
+/* ===== v25.1 footer portfolio download underline ===== */
+/* Underline spans the text + arrow only. */
+.footer-download-link {
+  position: relative;
+  display: inline-flex !important;
+  width: fit-content !important;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 4px !important;
+  border-bottom: 1px solid currentColor !important;
+}
+.footer-download-link > span {
+  padding-bottom: 0 !important;
+  border-bottom: 0 !important;
+}
