@@ -309,7 +309,7 @@ if (
 
   setInterval(
     showNextPrework,
-    3200
+    2000
   );
 
 }
