@@ -1919,3 +1919,22 @@ body:not(.works-page):not(.contact-page) .site-header.scrolled .inquiry-icon spa
     word-spacing:13px;
   }
 }
+
+/* ===== v24.3 YouTube Shorts 9:16 layout ===== */
+.youtube-preview-grid {
+  width:min(680px, 100%);
+  margin-left:auto;
+  margin-right:auto;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:16px;
+}
+.video-preview {
+  aspect-ratio:9 / 16;
+}
+@media (max-width:767px) {
+  .youtube-preview-grid {
+    width:100%;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:8px;
+  }
+}
